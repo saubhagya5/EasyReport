@@ -1,0 +1,46 @@
+
+type Query {
+  filterTestReports(filter: TestReportFilter): [TestReport]
+}
+
+type Mutation {
+  updateReportStatus(id: ID!, status: String!): TestReport
+  createTestReport(input: CreateTestReportInput!): TestReport
+}
+
+input CreateTestReportInput {
+  patientEmail: String
+  patientPhone: String
+  type: String!
+  date: String!
+  status: String!
+  pdfUrl: String
+}
+
+input TestReportFilter {
+  date: String
+  email: String
+  name: String
+  phone: String
+  id: ID
+  status: String
+  type: String
+}
+
+type TestReport {
+  id: ID!
+  type: String
+  date: String
+  status: String
+  pdfUrl: String
+  patientEmail: String
+  patient: Patient
+}
+
+type Patient {
+  id: ID!
+  name: String
+  email: String
+  phone: String
+  address: String
+}
